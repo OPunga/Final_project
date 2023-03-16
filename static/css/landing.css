@@ -1,0 +1,117 @@
+body{
+    background-color: #fff;
+}
+
+body h1{
+    text-align: center;
+    color: rgb(19, 127, 73);
+}
+
+.sec{
+    position: absolute;
+    width: 846px;
+    height: 376px;
+    left: 134px;
+    top: 168px;
+    display: flex;
+
+
+}
+
+.para-graph p{
+    text-align: center;
+    text-shadow: #75e4b7;
+    color: #000000;
+    font-weight: normal;
+    font-style: italic;
+    font-size: 30px;
+    position: absolute;
+    width: 405.98px;
+    height: 400px;
+    left: 940px;
+    top: 132.77px;
+
+    background: #75e4b7;
+    transform: rotate(-0.81deg);
+    border-radius: 30px;
+
+}
+.dev-1 a img{
+    border-radius: 60px;
+}
+.dev-2 a img{
+    border-radius: 60px;
+}
+
+.dev-3 a img{
+    border-radius: 60px;
+}
+
+.dev-1 p{
+    padding-right: 20px;
+}
+
+.dev-2 p{
+    padding-right: 20px;
+}
+
+.container {
+	height: 200px;
+    width: 500px;
+	position: absolute;
+	left: 400px;
+	top: 500px;
+}
+
+.btn {
+      background-color: #c2fbd7;
+      border-radius: 100px;
+      box-shadow: rgba(44, 187, 99, .2) 0 -25px 18px -14px inset,rgba(44, 187, 99, .15) 0 1px 2px,rgba(44, 187, 99, .15) 0 2px 4px,rgba(44, 187, 99, .15) 0 4px 8px,rgba(44, 187, 99, .15) 0 8px 16px,rgba(44, 187, 99, .15) 0 16px 32px;
+      color: green;
+      cursor: pointer;
+      display: inline-block;
+      font-family: CerebriSans-Regular,-apple-system,system-ui,Roboto,sans-serif;
+      padding: 7px 20px;
+      text-align: center;
+      text-decoration: none;
+      transition: all 250ms;
+      border: 0;
+      font-size: 16px;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+ }
+
+.container p{
+              font-family: "Times New Roman", Times, serif;
+	      font-style: italic;
+              font-size: 25px;
+              text-align: center;
+              justify-content: center;
+	      color: green;
+
+}
+
+.developers{  
+              font-family: "Times New Roman", Times, serif;
+              font-size: 25px;
+              color: black;
+}	   
+
+.container a{
+    justify-content: center;
+    padding-left: 200px;
+}
+
+.container img{
+   padding-right: 70px;
+}
+
+.dev-3 p{
+    padding-right: 60px;
+}
+
+.img-1 a img{
+    padding-top: 500px;
+    padding-left: 540px;
+}

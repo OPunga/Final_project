@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="Gallery.css">
+{% endblock %}
+
+{% block body %}
+    <header class="header">
+      <section>
+		<a href="#"><img src="{{url_for('static', filename='images/crm.png')}}" class="logo" width="200px" height="150px"  alt=""></a>
+      </section>
+      </header>
+    <div class="sec1">
+    <h1 class="hard">HARDWARE GALLERY PORTFOLIO</h1>
+         <p> Browse through our Gallery Portfolio to gain some new ideas for your personal style <br>
+             from a collection of  CRM hardware’s items.<br>
+             See the latest trends in Hardware tools from pliers, screw, handsaw,<br>
+             hammer, leveller, hackers.<br>
+         </p>
+     </div>
+    <section class="items">
+        <div class="gallery-content">
+          <div class="g-card--1">
+		    <img src="{{url_for('static', filename='images/hack.jpeg')}}" alt="Net Error"width="225" height="225" />
+            <h3>Hand saw</h3>
+          </div>     
+          
+          <div class="g-card--2">
+		    <img src="{{url_for('static', filename='images/main2.jpg')}}" alt="Net Error" width="225" height="225"/>
+            <h3>Hammer</h3>
+          </div>
+
+         
+          <div class="g-card--3">
+		    <img src="{{url_for('static', filename='images/hack.jpeg')}}" alt="Net Error" width="225" height="225"/>
+            <h3>pliers</h3>
+          </div>
+
+          <div class="g-card--4">
+		    <img src="{{url_for('static', filename='images/main4.jpg')}}" alt="Net Error" width="225" height="225"/>
+            <h3>leveller</h3>
+          </div>
+
+          
+          <div class="g-card--5">
+		    <img src="{{url_for('static', filename='images/hack.jpeg')}}" alt="Net Error" width="225" height="225"/>
+            <h3>Hack</h3>
+          </div>
+
+          
+          <div class="g-card--6">
+		    <img src="{{url_for('static', filename='images/main6.jpeg')}}" alt="Net Error" width="225" height="225"/>
+            <h3>wheelbarrow</h3>
+	        </div>
+        </div>
+    </section>
+    <footer>
+      <div class="foot">
+          <p>Copyright  CRM 2022 || &copy all right reserved.</p>
+      </div>
+     </footer>
+{% endblock %} 
