@@ -2,8 +2,21 @@
 """web frame work module"""
 
 from flask import Flask, render_template, url_for
+from getpass import getpass
+from mysql.connector import connect, Error
 
 app = Flask(__name__)
+
+try:
+    with connect(
+        host="localhost",
+        user=input("Enter username: "),
+        password=getpass("Enter password: "),
+    ) as connection:
+        print(connection)
+except Error as e:
+    print(e)
+
 
 @app.route("/")
 def index():
