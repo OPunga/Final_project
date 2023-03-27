@@ -6,12 +6,24 @@ from getpass import getpass
 from mysql.connector import connect, Error
 
 app = Flask(__name__)
+customers = """
+CREATE TABLE IF NOT EXISTS customers (cust_id INT (11) PRIMARY KEY AUTO_INCREMENT, f_name VARCHAR (30) NOT NULL,
+l_name VARCHAR(30) NOT NULL, email VARCHAR(30), phone VARCHAR(30) NOT NULL)"""
 
+products_table = """
+CREATE TABLE IF NOT EXISTS products (prod_id INT (11) PRIMARY KEY AUTO_INCREMENT, prod_name VARCHAR (30), prod_price DECIMAL (4, 2)
+)
+"""
+
+orders_table = """
+    CREATE TABLE IF NOT EXISTS orders (order_id INT (11) PRIMARY KEY AUTO_INCREMENT, FOREIGN KEY (cust_id) REFERENCES customers(cust_id) ON DELETE CASCADE ON UPDATE CASCADE, FOREIGN KEY (prod_id) REFERENCES products (prod_id) ON DELETE CASCADE ON UPDATE CASCADE) 
+"""
 try:
     with connect(
         host="localhost",
         user=input("Enter username: "),
         password=getpass("Enter password: "),
+        database = """ecommerce_store"""
     ) as connection:
         print(connection)
 except Error as e:
@@ -35,4 +47,5 @@ def gallery():
     return render_template("Gallery.html")
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.url_map.strict_slashes = False
+    app.run(host='0.0.0.0', port=5000)
