@@ -18,25 +18,46 @@ CREATE TABLE IF NOT EXISTS products (prod_id INT (11) PRIMARY KEY AUTO_INCREMENT
 orders_table = """
     CREATE TABLE IF NOT EXISTS orders (order_id INT (11) PRIMARY KEY AUTO_INCREMENT, FOREIGN KEY (cust_id) REFERENCES customers(cust_id) ON DELETE CASCADE ON UPDATE CASCADE, FOREIGN KEY (prod_id) REFERENCES products (prod_id) ON DELETE CASCADE ON UPDATE CASCADE) 
 """
-try:
+
+#d = """INSERT INTO customers (cust_id, f_name, l_name, email, phone) VALUES (0, "dee", "shish", "deeshish@gmail.com", "+254717018610")"""
+"""try:
     with connect(
         host="localhost",
         user=input("Enter username: "),
         password=getpass("Enter password: "),
-        database = """ecommerce_store"""
+        database = "ecommerce_store"
     ) as connection:
-        print(connection)
+        with connection.cursor() as cursor:
+            cursor.execute(customers)
+        with connection.cursor() as cursor:
+            cursor.execute(d)
+            connection.commit()
 except Error as e:
     print(e)
-
+"""
 
 @app.route("/")
 def index():
     return render_template("index.html")
 
 @app.route("/home/")
-def home():
-    return render_template("home.html")
+def home(f_name, l_name):
+   try:
+        with connect(
+                host="localhost",
+                user=input("Enter username: "),
+                password=getpass("Enter password: "),
+                database = 'ecommerce_store'
+                ) as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(customers)
+            with connection.cursor() as cursor:
+                cursor.execute("""INSERT INTO customers (f_name, l_name) VALUES ('Mary', 'Okumbe')""")
+                connection.commit()
+   except Error as e:
+       print(e)
+   return render_template("home.html")
+
 
 @app.route("/about/")
 def about():
