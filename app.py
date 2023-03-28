@@ -1,9 +1,10 @@
 #!/usr/bin/python3
 """web frame work module"""
 
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, json, request
 from getpass import getpass
 from mysql.connector import connect, Error
+
 
 app = Flask(__name__)
 customers = """
@@ -52,7 +53,7 @@ def home(f_name, l_name):
             with connection.cursor() as cursor:
                 cursor.execute(customers)
             with connection.cursor() as cursor:
-                cursor.execute("""INSERT INTO customers (f_name, l_name) VALUES ('Mary', 'Okumbe')""")
+                cursor.execute("""INSERT INTO customers (f_name, l_name, email, phone) VALUES ('Mary', 'Okumbe', 'maryokumbe@gmail.com', '+254712345678')""")
                 connection.commit()
    except Error as e:
        print(e)
@@ -66,6 +67,20 @@ def about():
 @app.route("/gallery/")
 def gallery():
     return render_template("Gallery.html")
+
+@app.route("/signup/",methods=['POST'])
+def signup():
+    f_name = request.form['inputName']
+    l_name = request.form['inputName']
+    email = request.form['inputEmail']
+    phone = request.form['inputPhone']
+    
+    #validate the received values
+    if f_name and l_name and email and phone:
+        return json.dumps({'html':'<span>All good!</span>'})
+    else:
+        return json.dumps({'html':'<span>Enter the requiredfields</span>'})
+    return render_template("Signup.html")
 
 if __name__ == "__main__":
     app.url_map.strict_slashes = False
