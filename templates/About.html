@@ -1,0 +1,72 @@
+{% extends "base.html"%}
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/About.css')}}">
+{% endblock %}
+
+{%block body%}
+	<header class="header">
+      <section>
+		<a href="#"><img src="{{ url_for('static', filename='images/crm.png')}}" class="logo" width="125px" height="125px"  alt=""></a>
+      </section>
+      <nav class="navbar">
+        <ul>
+          <li>
+		    <a class="Active" href="{{url_for('home')}}">HOME</a>
+          </li>
+          <li>
+		    <a class="about" href="{{url_for('about')}}">ABOUT</a>
+          </li>
+          <li>
+		    <a class = "gallery" href="{{url_for('gallery')}}">GALLERY</a>
+          </li>
+          <li>
+            <a href="#order">ORDERS</a>
+          </li>
+        </ul>
+      </nav>
+      </header>
+        <h1>#YOUR NO.1 ONLINE STORE</h1>
+        <div class="all">
+            <div class="clear">
+			<img src="{{url_for('static', filename='images/hammer2.jpeg')}}">
+                <h4>Hammer</h4>
+                <p>with strong tip</p>
+                <p>KSH 1000</p>
+            </div>
+            <div class="hack">
+			<img src="{{url_for('static', filename='images/hack.jpeg')}}">
+                <h4>Hack</h4>
+                <p>With strong handle</p>
+                <p>KSH 1200</p>
+            </div>
+            <div class="imge3">
+			<img src="{{url_for('static', filename='images/hack.jpeg')}}">
+                <h4>Hack</h4>
+                <p>ksh 4000</p>
+            </div>
+        </div>
+       <div class="position">
+        <div class="two">
+		  <img src="{{url_for('static', filename='images/handsaw2.jpg')}}" width="225" height="225">
+            <h4>handsaw</h4>
+            <p>Hand friendly</p>
+            <p>KSH 1000</p>
+
+        </div>
+        <div class="three">
+		  <img src="{{url_for('static', filename='images/ply.jpeg')}}">
+            <h4>Soft Handle</h4>
+            <p>KSH 450</p>
+        </div>
+        <div class="imge4">
+		  <img src="{{url_for('static', filename='images/hack.jpeg')}}">
+            <h4>Hack</h4>
+            <p>ksh 4000</p>
+        </div>
+       </div>
+       <footer>
+        <div class="foot">
+            <p>Copyright  CRM 2022 || &copy all right reserved.</p>
+        </div>
+       </footer>
+{% endblock %}
