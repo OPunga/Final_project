@@ -2,24 +2,27 @@
 """web frame work module"""
 
 from flask import Flask, render_template, url_for, json, request
-from flask.ext.mysql import MySQL
-from werkzeug import generate_password_hash, check_password_hash
+from flask_mysqldb import MySQL
+from werkzeug.security import generate_password_hash, check_password_hash
+from mysql.connector import connect, Error
+from getpass import getpass
+import mysql.connector as myconn
 
 
 app = Flask(__name__)
 
 
-mysql = MySQL()
+#mysql = MySQL()
 #MySQL configurations 
-app.config['MYSQL_DATABASE_USER'] = 'root'
-app.config['MYSQL_DATABASE_PASSWORD'] = ''
-app.config['MYSQL_DATABASE_DB'] = 'ecommerce_store'
-app.config['MYSQL_DATABASE_HOST'] = 'localhost'
-mysql.init_app(app)
+#app.config['MYSQL_DATABASE_USER'] = 'root'
+#app.config['MYSQL_DATABASE_PASSWORD'] = ''
+#app.config['MYSQL_DATABASE_DB'] = 'ecommerce_store'
+#app.config['MYSQL_DATABASE_HOST'] = 'localhost'
+#mysql.init_app(app)
 
 
-conn = mysql.connect()
-cursor = conn.cursor()
+#conn = mysql.connect()
+#cursor = conn.cursor()
 
 
 @app.route("/")
@@ -44,6 +47,25 @@ def signup():
 
 @app.route('/api/signup',methods=['POST'])
 def signUp():
+    mydb = myconn.connect(
+        host = "localhost",
+        user = input("Enter username: "),
+        password = getpass("Enter password: "),
+        database = "ecommerce_store"
+        )
+obj = mydb.cursor()
+obj.callproc("sp_createUser", [f_name, l_name, email, phone, password])
+
+for result in obj.stored_results():
+    details = result.fetchall()
+
+for det in details:
+    print(det)
+
+obj.close()
+mydb.close()
+    
+
     # create user code will be here !!
     f_name = request.form['inputName']
     l_name = request.form['inputName']
@@ -61,7 +83,7 @@ def signUp():
     cursor.callproc('sp_createUser',(f_name,l_name,email,phone,hashed_password))
     data = cursor.fetchall()
     
-    if len(data) is 0:
+    if len(data) == 0:
         conn.commit()
         return json.dumps({'message':'User created successfully !'})
     else:
