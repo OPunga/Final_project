@@ -9,7 +9,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_createUser`(
 BEGIN
     if ( select exists (select 1 from tbl_user where phone = p_phone) ) THEN
      
-        select 'Username Exists !!';
+        select 'Phone Exists !!';
      
     ELSE
      
