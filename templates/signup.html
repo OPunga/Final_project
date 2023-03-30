@@ -1,60 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-		    
-		<title>Python Flask Bucket List App - Signup</title>
-		    
-		<link
-			href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-			rel="stylesheet"
-			integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-			crossorigin="anonymous"
-		/>
-		<link href="../static/signup.css" rel="stylesheet" />
-	</head>
-	<body>
-		    
-		<div class="container">
-			        
-			<div class="header">
-				            
-				<nav
-					class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom"
-				>
-					<a
-						href="/"
-						class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none"
-					>
-						<span class="fs-4">Python Flask App</span>
-					</a>
-					<ul class="nav nav-pills">
-						<li class="nav-item">
-							<a href="/" class="nav-link">Home</a>
-						</li>
-						<li class="nav-item">
-							<a href="/signup" class="nav-link active" aria-current="page"
-								>Signup</a
-							>
-						</li>
-					</ul>
-					                        
-				</nav>
-				        
-			</div>
+{% extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/signup.css')}}">
+
+{% endblock %}
+{% block body %}
+
+<header class="header">
+      <section>
+		<a href="#"><img src="{{ url_for('static', filename='images/crm.png')}}" class="logo" width="125px" height="125px"  alt=""></a>
+      </section>
+      <nav class="navbar">
+        <ul>
+          <li>
+		    <a class="Active" href="{{url_for('home')}}">HOME</a>
+          </li>
+          <li>
+		    <a class="about" href="{{url_for('about')}}">ABOUT</a>
+          </li>
+          <li>
+		    <a class = "gallery" href="{{url_for('gallery')}}">GALLERY</a>
+          </li>
+          <li>
+          </li>
+        </ul>
+      </nav>
+      </header>
 			<div class="p-5 mb-4 bg-light rounded-3">
 				<div class="container-fluid py-5">
-					<h1 class="display-5 fw-bold text-center">Bucket List App</h1>
+					<h1 class="display-5 fw-bold text-center">Signup Form</h1>
 					<form id="form-signin" action="/api/signup" method="POST">
-						        <label for="inputName" class="sr-only">Name</label>
+						        <label for="inputName" class="sr-only">First Name</label>
 						        <input
 							type="name"
 							name="inputName"
 							id="inputName"
 							class="form-control"
-							placeholder="Name"
+							placeholder="First Name"
 							required
 							autofocus
 						/>
+						    <label for="inputName" class="sr-only">SurName</label>
+							<input
+							type="name"
+							name="inputName"
+							id="inputName"
+							class="form-control"
+							placeholder="SurName"
+							required
+							autofocus
+						/>
+
 						        <label for="inputEmail" class="sr-only"
 							>Email address</label
 						>
@@ -66,7 +62,17 @@
 							placeholder="Email address"
 							required
 							autofocus
-						/>
+                       />
+					        <label for="inputPhone" class="sr-only">Phone</label>
+							<input
+							type="text"
+							name="inputPhone"
+                            id="inputPhone"
+							class="form-control"
+							placeholder="Phone"
+							required
+					   />
+
 						        <label for="inputPassword" class="sr-only">Password</label>
 						        <input
 							type="password"
@@ -89,7 +95,7 @@
 			        
 			<footer class="footer">
 				            
-				<p>&copy; Company 2022</p>
+				<p>&copy; Company 2023</p>
 				        
 			</footer>
 			    
@@ -110,5 +116,4 @@
 					console.log(await res.json());
 				});
 		</script>
-	</body>
-</html>
+{% endblock %}	
