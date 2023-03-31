@@ -7,22 +7,17 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from mysql.connector import connect, Error
 from getpass import getpass
 import mysql.connector as myconn
+import mysql.connector
 
 
 app = Flask(__name__)
 
-
-#mysql = MySQL()
-#MySQL configurations 
-#app.config['MYSQL_DATABASE_USER'] = 'root'
-#app.config['MYSQL_DATABASE_PASSWORD'] = ''
-#app.config['MYSQL_DATABASE_DB'] = 'ecommerce_store'
-#app.config['MYSQL_DATABASE_HOST'] = 'localhost'
-#mysql.init_app(app)
-
-
-#conn = mysql.connect()
-#cursor = conn.cursor()
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = ''
+app.config['MYSQL_DB'] = 'flask'
+ 
+mysql = MySQL(app)
 
 
 @app.route("/")
@@ -47,42 +42,26 @@ def signup():
 
 @app.route('/api/signup',methods=['POST'])
 def signUp():
-    mydb = myconn.connect(
-        host = "localhost",
-        user = input("Enter username: "),
-        password = getpass("Enter password: "),
-        database = "ecommerce_store"
-        )
-obj = mydb.cursor()
-obj.callproc("sp_createUser", [f_name, l_name, email, phone, password])
-
-for result in obj.stored_results():
-    details = result.fetchall()
-
-for det in details:
-    print(det)
-
-obj.close()
-mydb.close()
-    
-
-    # create user code will be here !!
+    # read the posted values from the UI
     f_name = request.form['inputName']
     l_name = request.form['inputName']
     email = request.form['inputEmail']
     phone = request.form['inputPhone']
     password = request.form['inputPassword']
-    
+
     # validate the received values
     if f_name and l_name and email and phone and password:
         return json.dumps({'html':'<span>All fields good !!</span>'})
     else:
         return json.dumps({'html':'<span>Enter the required fields</span>'})
+    conn = mysql.connect()
+    cursor = conn.cursor()
 
-    hashed_password = generate_password_hash(_password)
+    hashed_password = generate_password_hash(password)
+
     cursor.callproc('sp_createUser',(f_name,l_name,email,phone,hashed_password))
+
     data = cursor.fetchall()
-    
     if len(data) == 0:
         conn.commit()
         return json.dumps({'message':'User created successfully !'})
